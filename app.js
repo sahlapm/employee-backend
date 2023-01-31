@@ -61,7 +61,7 @@ app.post('/api/logincheck',(req,res)=>{
         }
        })
     })
-app.get('/',async(req,res)=>{
+app.get('/api/',async(req,res)=>{
 try
 {
   const data=await EmployeeModel.find()

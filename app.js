@@ -1,31 +1,28 @@
-// Task1: initiate app and run server at 3000
-// app.js
 
 const express = require('express');
-const bodyparser=require('body-parser');
+var app=new express();
+app.use(express.json());
+app.use(express.urlencoded({extented:false}));
+
 const bcrpt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 
-var app=new express();
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extented:false}));
 const cors=require('cors');
 app.use(cors());
 const mongoose=require('mongoose');
 const { EmployeeModel } = require('./model/employee');
 const { UserModel } = require('./model/users');
 
-
 mongoose.connect('mongodb+srv://sahla:sahlaAtlas@cluster0.2wlvq8k.mongodb.net/EmployeeDB?retryWrites=true&w=majority',
 {
     useNewUrlParser:true
 });
-
 const path = require('path');
 app.use(express.static(path.join(__dirname,'/build')));
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname
     ,'/build/index.html')); });
+
 
 app.post('/api/create',(req,res)=>{
 
@@ -62,11 +59,15 @@ app.post('/api/logincheck',(req,res)=>{
         }
        })
     })
+    // tests employee route
+app.get('/test', (req, res) => res.send('employee route testing'));
 app.get('/api/read',async(req,res)=>{
 try
 {
-  const data=await EmployeeModel.find()
-  res.json(data);
+  
+  
+    const data=await EmployeeModel.find()
+  res.send(data);
 }
 catch(err)
 {

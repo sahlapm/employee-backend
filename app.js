@@ -60,13 +60,11 @@ app.post('/api/logincheck',(req,res)=>{
        })
     })
     // tests employee route
-app.get('/test', (req, res) => res.send('employee route testing'));
+app.get('/api/test', (req, res) => res.send('employee route testing'));
 app.get('/api/read',async(req,res)=>{
 try
 {
-  
-  
-    const data=await EmployeeModel.find()
+ const data=await EmployeeModel.find()
   res.send(data);
 }
 catch(err)

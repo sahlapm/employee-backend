@@ -63,7 +63,7 @@ app.post('/api/logincheck',(req,res)=>{
     })
     // tests employee route
 app.get('/api/test', (req, res) => res.send('employee route testing'));
-app.get('/api',async(req,res)=>{
+app.get('/',async(req,res)=>{
 try
 {
  const data=await EmployeeModel.find()
